@@ -28,12 +28,17 @@ class SpeechToTextApp(App):
 
                 self.label.text = "Processing..."
                 text = self.recognizer.recognize_google(audio)
+                
                 self.label.text = f"You said: {text}"
+
+
 
         except sr.UnknownValueError:
             self.label.text = "Could not understand audio"
         except sr.RequestError as e:
             self.label.text = f"Could not request results; {e}"
+        except OSError as e:
+            self.label.text = f"OSError; {e}"
 
 
 if __name__ == "__main__":
